@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="ERROR">
+    <Appenders>
+        <RollingFile name="LogToFile" fileName="logs/hippodrome.log"
+                     filePattern="logs/hippodrome.%d{yyyy-MM-dd}.log"
+                     ignoreExceptions="false">
+            <PatternLayout pattern="%d %-5 %c: %m%n"/>
+            <TimeBasedTriggeringPolicy/>
+            <DefaultRolloverStrategy>
+                <Delete basePath="logs" maxDepth="2">               <!--logs properties-->
+                    <IfFileName glob="hippodrome.*.log"/>
+                    <IfLastModified age="7d"/>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Root level="ALL">
+            <AppenderRef ref="LogToFile"/>
+        </Root>
+    </Loggers>
+</Configuration>
+
+        <!--<?xml version="1.0" encoding="UTF-8"?>-->
+        <!--<Configuration status="INFO">-->
+        <!--    <Appenders>-->
+        <!--        <Console name="ConsoleAppender" target="SYSTEM_OUT">-->
+        <!--            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />-->
+        <!--        </Console>-->
+        <!--        <File name="FileAppender" fileName="application-${date:yyyyMMdd}.log" immediateFlush="false" append="true">-->
+        <!--            <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>-->
+        <!--        </File>-->
+        <!--    </Appenders>-->
+        <!--    <Loggers>-->
+        <!--        <Root level="debug">-->
+        <!--            <AppenderRef ref="ConsoleAppender" />-->
+        <!--            <AppenderRef ref="FileAppender"/>-->
+        <!--        </Root>-->
+        <!--    </Loggers>-->
+        <!--</Configuration>-->
